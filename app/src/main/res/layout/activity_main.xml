@@ -23,48 +23,47 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/enterCourseMessage">
         <LinearLayout
-            android:id="@+id/department"
+            android:id="@+id/school"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:orientation="horizontal">
             <TextView
-                android:id="@+id/departmentName"
+                android:id="@+id/schoolName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
-                android:text="Department:"/>
+                android:text="School:"/>
 
-            <EditText
-                android:id="@+id/enterDepartment"
+            <AutoCompleteTextView
+                android:id="@+id/enterSchool"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
-                android:layout_toRightOf="@+id/departmentName"
                 android:inputType="text"
+                android:dropDownHeight="150dp"
                 android:imeOptions="actionNext"/>
 
         </LinearLayout>
         <LinearLayout
-            android:id="@+id/course"
+            android:id="@+id/subject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_below="@+id/department"
+            android:layout_below="@+id/school"
             android:orientation="horizontal">
             <TextView
-                android:id="@+id/courseNumber"
+                android:id="@+id/subjectName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
-                android:text="Course:"/>
+                android:text="Subject:"/>
 
-            <EditText
-                android:id="@+id/enterCourseNumber"
+            <AutoCompleteTextView
+                android:id="@+id/enterSubject"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
-                android:layout_toRightOf="@+id/courseNumber"
-                android:inputType="number"
+                android:dropDownHeight="150dp"
                 android:imeOptions="actionDone"/>
 
         </LinearLayout>

@@ -4,7 +4,9 @@
     <modules>
       <module fileurl="file://C:\Users\Aakash\Programming\Scheduling_App_summer\IsEECS280available.iml" filepath="C:\Users\Aakash\Programming\Scheduling_App_summer\IsEECS280available.iml" />
       <module fileurl="file://$PROJECT_DIR$/Scheduling_App_summer.iml" filepath="$PROJECT_DIR$/Scheduling_App_summer.iml" />
+      <module fileurl="file://C:\Users\Aakash\Programming\Scheduling_App_summer\Scheduling_App_summer.iml" filepath="C:\Users\Aakash\Programming\Scheduling_App_summer\Scheduling_App_summer.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://C:\Users\Aakash\Programming\Scheduling_App_summer\app\app.iml" filepath="C:\Users\Aakash\Programming\Scheduling_App_summer\app\app.iml" />
     </modules>
   </component>
 </project>
