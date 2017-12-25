@@ -1,16 +1,13 @@
 package com.discrete.iseecs280available;
 
 import android.content.Context;
-import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.Filter;
 import android.widget.TextView;
-
 import java.util.ArrayList;
-import java.util.Arrays;
 
 public class AutocompleteAdapter extends ArrayAdapter {
 
@@ -23,7 +20,6 @@ public class AutocompleteAdapter extends ArrayAdapter {
         super(context, R.layout.drop_down_format, data);
         this.context = context;
         this.data = data;
-        filteredData = this.data;
     }
 
     @Override
@@ -31,14 +27,13 @@ public class AutocompleteAdapter extends ArrayAdapter {
 
         LayoutInflater inflater = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
         View rowView = inflater.inflate(R.layout.drop_down_format, null);
-        TextView courseName = (TextView) rowView.findViewById(R.id.text1);
 
         System.out.println(filteredData);
         try {
-            courseName.setText(filteredData.get(filteredData.indexOf(data.get(position))));
+            TextView courseName = (TextView) rowView.findViewById(R.id.text1);
+            courseName.setText(filteredData.get(position));
         } catch (Exception e){
-            courseName.setText("");
-            courseName.setTextSize(0);
+
         }
 
         return rowView;
@@ -51,7 +46,7 @@ public class AutocompleteAdapter extends ArrayAdapter {
             protected FilterResults performFiltering(CharSequence charSequence)
             {
                 FilterResults results = new FilterResults();
-                ArrayList<String> resultingData = new ArrayList();
+                ArrayList<String> resultingData = new ArrayList<>();
 
                 // check to make sure that entry is not just whitespace
                 if (!charSequence.toString().trim().isEmpty()) {
@@ -59,6 +54,9 @@ public class AutocompleteAdapter extends ArrayAdapter {
                         if (charSequence.toString().toLowerCase()
                                 .equals(i.substring(0, charSequence.length()).toLowerCase())) {
                             resultingData.add(i);
+                        }
+                        else {
+                            resultingData.remove(i);
                         }
                     }
                 }
