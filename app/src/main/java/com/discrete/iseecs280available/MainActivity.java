@@ -59,15 +59,13 @@ public class MainActivity extends AppCompatActivity {
             final Set<String> SCHOOLS = schoolData.keySet();
 
             // create array adapter for school input field with school names
-            final ArrayAdapter<String> school_adapter = new ArrayAdapter<String>(this,
-                    android.R.layout.simple_dropdown_item_1line,
+            final AutocompleteAdapter school_adapter = new AutocompleteAdapter(this,
                     SCHOOLS.toArray(new String[SCHOOLS.size()]));
             editSchool.setAdapter(school_adapter);
             editSchool.setThreshold(1);
 
             // create array adapter for subject field, currently empty
-            final ArrayAdapter<String> subject_adapter = new ArrayAdapter<String>(this,
-                    android.R.layout.simple_dropdown_item_1line, new String[0]);
+            final AutocompleteAdapter subject_adapter = new AutocompleteAdapter(this, new String[0]);
             editSubject.setAdapter(subject_adapter);
             editSubject.setThreshold(1);
 
