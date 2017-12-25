@@ -44,8 +44,6 @@ public class AutocompleteAdapter extends ArrayAdapter {
         return rowView;
     }
 
-
-
     @Override
     public Filter getFilter(){
         return new Filter() {
@@ -54,10 +52,14 @@ public class AutocompleteAdapter extends ArrayAdapter {
             {
                 FilterResults results = new FilterResults();
                 ArrayList<String> resultingData = new ArrayList();
-                for(String i: data){
-                    if(charSequence.toString().substring(0, charSequence.length()).toLowerCase()
-                            .equals(i.substring(0, charSequence.length()).toLowerCase())){
-                        resultingData.add(i);
+
+                // check to make sure that entry is not just whitespace
+                if (!charSequence.toString().trim().isEmpty()) {
+                    for (String i : data) {
+                        if (charSequence.toString().toLowerCase()
+                                .equals(i.substring(0, charSequence.length()).toLowerCase())) {
+                            resultingData.add(i);
+                        }
                     }
                 }
                 results.values = resultingData;
