@@ -35,7 +35,7 @@ public class AutocompleteAdapter extends ArrayAdapter {
 
         System.out.println(filteredData);
         try {
-            courseName.setText(filteredData.get(position));
+            courseName.setText(filteredData.get(filteredData.indexOf(data.get(position))));
         } catch (Exception e){
             courseName.setText("");
             courseName.setTextSize(0);
