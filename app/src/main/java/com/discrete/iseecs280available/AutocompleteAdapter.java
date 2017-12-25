@@ -58,6 +58,7 @@ public class AutocompleteAdapter extends ArrayAdapter {
                 return results;
             }
 
+
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults)
             {
