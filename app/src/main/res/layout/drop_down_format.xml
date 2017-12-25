@@ -5,8 +5,8 @@
     android:layout_height="wrap_content">
     <com.discrete.iseecs280available.customTextView
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:id="@+id/text1"
-        android:textSize="18sp"
-        android:padding="5dp"/>
+        android:textSize="15sp"
+        android:paddingTop="15dp"/>
 </LinearLayout>
