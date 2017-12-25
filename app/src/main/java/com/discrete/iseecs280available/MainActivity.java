@@ -15,6 +15,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -57,15 +58,16 @@ public class MainActivity extends AppCompatActivity {
                     "SchoolDescr",
                     "SchoolCode");
             final Set<String> SCHOOLS = schoolData.keySet();
-
+            final ArrayList<String> SCHOOLSList = new ArrayList<String>();
+            SCHOOLSList.addAll(SCHOOLS);
             // create array adapter for school input field with school names
             final AutocompleteAdapter school_adapter = new AutocompleteAdapter(this,
-                    SCHOOLS.toArray(new String[SCHOOLS.size()]));
+                    SCHOOLSList);
             editSchool.setAdapter(school_adapter);
             editSchool.setThreshold(1);
 
             // create array adapter for subject field, currently empty
-            final AutocompleteAdapter subject_adapter = new AutocompleteAdapter(this, new String[0]);
+            final AutocompleteAdapter subject_adapter = new AutocompleteAdapter(this, new ArrayList<String>());
             editSubject.setAdapter(subject_adapter);
             editSubject.setThreshold(1);
 

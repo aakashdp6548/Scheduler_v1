@@ -18,10 +18,11 @@ public class AutocompleteAdapter extends ArrayAdapter {
     private ArrayList<String> data;
     private ArrayList<String> filteredData;
 
-    public AutocompleteAdapter(Context context, String[] data_array) {
-        super(context, R.layout.drop_down_format, data_array);
+    //change this to ArrayList<String> data_array or you will pay for it later, I promise
+    public AutocompleteAdapter(Context context, ArrayList<String> data) {
+        super(context, R.layout.drop_down_format, data);
         this.context = context;
-        this.data = new ArrayList<String>(Arrays.asList(data_array));
+        this.data = data;
         filteredData = this.data;
     }
 
@@ -33,12 +34,18 @@ public class AutocompleteAdapter extends ArrayAdapter {
         TextView courseName = (TextView) rowView.findViewById(R.id.text1);
 
         System.out.println(filteredData);
-        courseName.setText(filteredData.get(position));
+        try {
+            courseName.setText(filteredData.get(position));
+        } catch (Exception e){
+            courseName.setText("");
+            courseName.setTextSize(0);
+        }
 
         return rowView;
     }
 
-    /*
+
+
     @Override
     public Filter getFilter(){
         return new Filter() {
@@ -47,9 +54,9 @@ public class AutocompleteAdapter extends ArrayAdapter {
             {
                 FilterResults results = new FilterResults();
                 ArrayList<String> resultingData = new ArrayList();
-                for(String i: resultingData){
-                    if(charSequence.toString().substring(0, charSequence.length())
-                            .equals(i.substring(0, charSequence.length()))){
+                for(String i: data){
+                    if(charSequence.toString().substring(0, charSequence.length()).toLowerCase()
+                            .equals(i.substring(0, charSequence.length()).toLowerCase())){
                         resultingData.add(i);
                     }
                 }
@@ -67,5 +74,6 @@ public class AutocompleteAdapter extends ArrayAdapter {
             }
         };
     }
-    */
+
+
 }
