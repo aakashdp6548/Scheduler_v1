@@ -15,15 +15,23 @@ import java.util.Arrays;
 public class AutocompleteAdapter extends ArrayAdapter {
 
     private Context context;
-    private final ArrayList<String> data;
+    private final ArrayList<String> data = new ArrayList<>();
     private ArrayList<String> filteredData;
 
     //change this to ArrayList<String> data_array or you will pay for it later, I promise
     public AutocompleteAdapter(Context context, ArrayList<String> data) {
         super(context, R.layout.drop_down_format, data);
         this.context = context;
-        this.data = data;
+        for (String i : data) {
+            this.data.add(i);
+        }
         filteredData = this.data;
+    }
+
+    public void add_data(ArrayList<String> data) {
+        for (String i : data) {
+            this.data.add(i);
+        }
     }
 
     @Override
@@ -51,12 +59,13 @@ public class AutocompleteAdapter extends ArrayAdapter {
             protected FilterResults performFiltering(CharSequence charSequence)
             {
                 System.out.println(charSequence);
+                System.out.println(data);
+
                 FilterResults results = new FilterResults();
-                ArrayList<String> resultingData = new ArrayList();
+                ArrayList<String> resultingData = new ArrayList<>();
 
                 // check to make sure that entry is not just whitespace
-                if (!charSequence.toString().trim().isEmpty()) {
-                    System.out.println("HERE");
+                if (charSequence != null && !charSequence.toString().trim().isEmpty()) {
                     for (String i : data) {
                         if (charSequence.toString().toLowerCase()
                                 .equals(i.substring(0, charSequence.length()).toLowerCase())) {
@@ -73,18 +82,18 @@ public class AutocompleteAdapter extends ArrayAdapter {
             @Override
             protected void publishResults(CharSequence charSequence, FilterResults filterResults)
             {
-                filteredData = (ArrayList<String>)filterResults.values;
-                clear();
-                try {
+                if (filterResults.count == 0) {
+                    notifyDataSetInvalidated();
+                }
+                else {
+                    filteredData = (ArrayList<String>) filterResults.values;
+                    clear();
                     for (String save : filteredData) {
                         add(save);
                     }
-                } catch(Exception e){
-                    //There are no elements, so we will just leave this as cleared
-                    System.out.println("EMPTY");
+                    System.out.println(filteredData);
+                    notifyDataSetChanged();
                 }
-                System.out.println(filteredData);
-                notifyDataSetChanged();
             }
         };
     }

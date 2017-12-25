@@ -89,9 +89,11 @@ public class MainActivity extends AppCompatActivity {
                     if (!hasFocus) {
                         // check if the school field is filled
                         String school = editSchool.getText().toString();
+                        System.out.println("Input school: " + school);
+
                         if (!school.equals("")) {
                             schoolCode = schoolData.get(school);
-                            editSubject.setText("");
+                            System.out.println(schoolCode);
                         }
                         // check if the school entered is valid
                         if (schoolCode != null) {
@@ -102,11 +104,16 @@ public class MainActivity extends AppCompatActivity {
                                         "SubjectDescr",
                                         "SubjectCode"
                                 );
+
+                                System.out.println(subjectData);
+
                                 // add values to subject adapter in form
-                                // [School Name (Code)]
+                                ArrayList<String> list = new ArrayList<>();
                                 for (Map.Entry<String, String> entry : subjectData.entrySet()) {
-                                    subject_adapter.add(entry.getValue() + " - " + entry.getKey());
+                                    list.add(entry.getValue() + " - " + entry.getKey());
                                 }
+                                subject_adapter.add_data(list);
+
                                 // reset adapter filter
                                 subject_adapter.getFilter().filter(editSubject.getText(), null);
                             }
