@@ -15,7 +15,7 @@ import java.util.Arrays;
 public class AutocompleteAdapter extends ArrayAdapter {
 
     private Context context;
-    private ArrayList<String> data;
+    private final ArrayList<String> data;
     private ArrayList<String> filteredData;
 
     //change this to ArrayList<String> data_array or you will pay for it later, I promise
@@ -33,8 +33,6 @@ public class AutocompleteAdapter extends ArrayAdapter {
         View rowView = inflater.inflate(R.layout.drop_down_format, null, false);
         TextView courseName = (TextView) rowView.findViewById(R.id.text1);
 
-        System.out.println(filteredData);
-        System.out.println(super.getCount());
         try {
             courseName.setText(filteredData.get(position));
         } catch (Exception e){
@@ -52,11 +50,13 @@ public class AutocompleteAdapter extends ArrayAdapter {
             @Override
             protected FilterResults performFiltering(CharSequence charSequence)
             {
+                System.out.println(charSequence);
                 FilterResults results = new FilterResults();
                 ArrayList<String> resultingData = new ArrayList();
 
                 // check to make sure that entry is not just whitespace
                 if (!charSequence.toString().trim().isEmpty()) {
+                    System.out.println("HERE");
                     for (String i : data) {
                         if (charSequence.toString().toLowerCase()
                                 .equals(i.substring(0, charSequence.length()).toLowerCase())) {
@@ -75,9 +75,15 @@ public class AutocompleteAdapter extends ArrayAdapter {
             {
                 filteredData = (ArrayList<String>)filterResults.values;
                 clear();
-                for(String save: filteredData){
-                    add(save);
+                try {
+                    for (String save : filteredData) {
+                        add(save);
+                    }
+                } catch(Exception e){
+                    //There are no elements, so we will just leave this as cleared
+                    System.out.println("EMPTY");
                 }
+                System.out.println(filteredData);
                 notifyDataSetChanged();
             }
         };
