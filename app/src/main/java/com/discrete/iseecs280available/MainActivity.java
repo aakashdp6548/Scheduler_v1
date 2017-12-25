@@ -26,9 +26,9 @@ import org.json.*;
 public class MainActivity extends AppCompatActivity {
 
     private String termCode = "2170";
-    private String schoolCode = "";
-    private String subjectCode = "";
-    private String catalogNum = "";
+    private String schoolCode = null;
+    private String subjectCode = null;
+    private String catalogNum = null;
 
     public Button submitButton;
     public AutoCompleteTextView editSubject, editSchool;
@@ -91,7 +91,7 @@ public class MainActivity extends AppCompatActivity {
                         String school = editSchool.getText().toString();
                         System.out.println("Input school: " + school);
 
-                        if (!school.equals("")) {
+                        if (!school.trim().isEmpty()) {
                             schoolCode = schoolData.get(school);
                             System.out.println(schoolCode);
                         }
