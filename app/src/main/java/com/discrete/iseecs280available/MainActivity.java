@@ -1,28 +1,20 @@
 package com.discrete.iseecs280available;
 
-import android.os.Environment;
+import android.graphics.Typeface;
 import android.os.StrictMode;
-import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.text.method.ScrollingMovementMethod;
-import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.AutoCompleteTextView;
 import android.widget.Button;
-import android.widget.CheckBox;
-import android.widget.EditText;
-import android.widget.TextView;
 
 import java.io.BufferedReader;
-import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.URL;
 import java.net.URLConnection;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
@@ -52,6 +44,12 @@ public class MainActivity extends AppCompatActivity {
             editSchool = (AutoCompleteTextView)findViewById(R.id.enterSchool);
             editSubject = (AutoCompleteTextView)findViewById(R.id.enterSubject);
 
+            // set font for button and input fields
+            Typeface t = Typeface.createFromAsset(getAssets(),
+                    "fonts/Quicksand-Regular.otf");
+            submitButton.setTypeface(t);
+            editSchool.setTypeface(t);
+            editSubject.setTypeface(t);
 
             // create map of schools and their codes
             schoolData = readMapFromFile(
@@ -80,30 +78,6 @@ public class MainActivity extends AppCompatActivity {
                     // get school and subject values
                     schoolCode = schoolData.get(editSchool.getText().toString());
                     subjectCode = editSubject.getText().toString();
-
-/*                    if (!subjectCode.isEmpty() && !catalogNum.isEmpty()) {
-                        TextView header = (TextView) findViewById(R.id.courseDisplayHeader);
-                        TextView info = (TextView) findViewById(R.id.courseInfo);
-                        try {
-                            String openSections = findOpenCourses();
-
-                            String headerMessage = subjectCode + " " + catalogNum;
-                            header.setText(headerMessage);
-
-                            info.setText(openSections);
-                            info.setMovementMethod(new ScrollingMovementMethod());
-                        }
-                        catch (Exception e) {
-                            e.printStackTrace();
-                            // clear header
-                            String headerMessage = "";
-                            header.setText(headerMessage);
-
-                            String errorMessage = "Sorry, the course you specified could not be found.";
-                            info.setText(errorMessage);
-                        }
-                    }*/
-
                     }
                 }
             );
@@ -115,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
                     if (!hasFocus) {
                         // check if the school field is filled
                         String school = editSchool.getText().toString();
-                        if (!school.equals(null)) {
+                        if (!school.equals("")) {
                             schoolCode = schoolData.get(school);
                             editSubject.setText("");
                         }
@@ -207,7 +181,7 @@ public class MainActivity extends AppCompatActivity {
     public Map<String, String> readMapFromFile(String filename, String key_str, String value_str) {
         try {
             // read from json into JSONArray
-            InputStream is = getAssets().open(filename);
+            InputStream is = getAssets().open("json/" + filename);
             int size = is.available();
             byte[] buffer = new byte[size];
             is.read(buffer);

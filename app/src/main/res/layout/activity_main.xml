@@ -10,7 +10,7 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context="com.discrete.iseecs280available.MainActivity">
 
-    <TextView
+    <com.discrete.iseecs280available.customTextView
         android:id="@+id/enterCourseMessage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -28,7 +28,7 @@
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
             android:orientation="horizontal">
-            <TextView
+            <com.discrete.iseecs280available.customTextView
                 android:id="@+id/schoolName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -45,13 +45,15 @@
                 android:imeOptions="actionNext"/>
 
         </LinearLayout>
+
         <LinearLayout
             android:id="@+id/subject"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_below="@+id/school"
             android:orientation="horizontal">
-            <TextView
+
+            <com.discrete.iseecs280available.customTextView
                 android:id="@+id/subjectName"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -63,6 +65,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.8"
+                android:inputType="text"
                 android:dropDownHeight="150dp"
                 android:imeOptions="actionDone"/>
 
@@ -77,26 +80,5 @@
         android:layout_alignParentLeft="true"
         android:layout_below="@+id/enterInfo"
         android:text="Submit" />
-
-    <RelativeLayout
-        android:id="@+id/courseDisplay"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/submitCourseInfo">
-        <TextView
-            android:id="@+id/courseDisplayHeader"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            android:text="" />
-        <TextView
-            android:id="@+id/courseInfo"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:scrollbars="vertical"
-            android:text=""
-            android:layout_below="@+id/courseDisplayHeader" />
-
-    </RelativeLayout>
 
 </RelativeLayout>
